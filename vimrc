@@ -51,7 +51,7 @@ map <C-p> :cp<CR>
 map <C-n> :cn<CR>
 
 " Toggle the UI on backtick for ssh copy-pasting
-nnoremap <silent> <Char-0x60> :set invnumber<CR>:TagbarToggle<CR>:NERDTreeTabsToggle<CR>:wincmd p<CR>
+nnoremap <silent> <Char-0x60> :set invnumber<CR>:TagbarToggle<CR>:NERDTreeMirrorToggle<CR>:wincmd p<CR>
 
 " tab stuff
   :set hidden
@@ -162,18 +162,27 @@ map <leader>r :NERDTreeFind<cr> " jump to current file in tree
 let g:nerdtree_tabs_open_on_console_startup = 1
 let g:nerdtree_tabs_focus_on_files = 1
 let g:nerdtree_tabs_meaningful_tab_names = 1
+let g:nerdtree_tabs_smart_startup_focus = 1
 
 " ack
 let g:ackprg="ack-grep -H --nocolor --nogroup --column"
 map <leader>a :Ack<space>
 
 " tagbar
+let g:tagbar_autoclose = 1
 let g:tagbar_autoshowtag = 1
 let g:tagbar_left = 0
 let g:tagbar_width = 36
 let g:tagbar_compact = 1
 let g:tagbar_sort = 0
+function ShowTagbarAndFocus()
+  call tagbar#OpenWindow('c')
+endfunction
 autocmd BufWinEnter * nested TagbarOpen
+"autocmd VimEnter * nested call ShowTagbarAndFocus()
+
+" temporary hack to force focus on the file
+autocmd VimEnter * 2:wincmd w
 
 " Finally load the user-customized postinit file
 source ~/.vim/09-postinit.vim
