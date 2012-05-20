@@ -30,13 +30,6 @@ autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
 
-" highlight 80 char width
-if exists('+colorcolumn')
-  set colorcolumn=81 " want the bar 1 char right to prevent confusion
-else
-  au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
-endif
-
 " mouse fixes
 set mouse=a
 set ttymouse=xterm2
@@ -109,7 +102,7 @@ nnoremap <silent> <Char-0x60> :set invnumber<CR>:TagbarToggle<CR>:NERDTreeMirror
   endif
 
  " gui-like keyboard shortcuts
-  map <Leader>w :confirm bdelete<CR>:TagbarClose<CR>
+  map <Leader>w :TagbarClose<CR>:confirm bdelete<CR>
   noremap <Tab>       :tabn<CR>
   noremap <S-Tab>     :tabp<CR>
   let g:lasttab = 1
@@ -169,7 +162,7 @@ let g:ackprg="ack-grep -H --nocolor --nogroup --column"
 map <leader>a :Ack<space>
 
 " tagbar
-let g:tagbar_autoclose = 1
+let g:tagbar_autoclose = 0
 let g:tagbar_autoshowtag = 1
 let g:tagbar_left = 0
 let g:tagbar_width = 36
