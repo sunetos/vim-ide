@@ -5,11 +5,28 @@ source ~/.vim/01-preinit.vim
 syntax on
 filetype plugin indent on
 set cb="exclude:.*"
-set number
+set relativenumber
 set autoread
 set clipboard=unnamedplus " local clipboard integration
 map :q :qa
 map :wq :wqa
+
+" Control-n to switch back & forth between relative & absolute numbers
+function! NumberToggle()
+  if(&relativenumber == 1)
+    set number
+  else
+    set relativenumber
+  endif
+endfunc
+nnoremap <C-n> :call NumberToggle()<cr>
+
+" Only use relative numbers when we have focus (fixes issues with tests)
+:au FocusLost * :set number
+:au FocusGained * :set relativenumber
+" Only use relative numbers in command mode
+autocmd InsertEnter * :set number
+autocmd InsertLeave * :set relativenumber
 
 " Load customized coding styles
 source ~/.vim/02-coding-style.vim
@@ -44,7 +61,7 @@ map <C-p> :cp<CR>
 map <C-n> :cn<CR>
 
 " Toggle the UI on backtick for ssh copy-pasting
-nnoremap <silent> <Char-0x60> :set invnumber<CR>:TagbarToggle<CR>:NERDTreeMirrorToggle<CR>:wincmd p<CR>
+nnoremap <silent> <Char-0x60> :set invrelativenumber<CR>:TagbarToggle<CR>:NERDTreeMirrorToggle<CR>:wincmd p<CR>
 
 " tab stuff
   :set hidden
