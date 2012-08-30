@@ -72,6 +72,7 @@ nnoremap <silent> <Char-0x60> :set invrelativenumber<CR>:TagbarToggle<CR>:NERDTr
   :set switchbuf=usetab,newtab
   ":au BufAdd,BufNewFile * nested tab sball
   :set showtabline=2 " Always show, even for a single file
+  map gf <C-w>gf " Always open files in new tabs
 
   " From http://vim.wikia.com/wiki/Show_tab_number_in_your_tab_line
   " Modified for better number formatting.
