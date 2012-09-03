@@ -147,6 +147,7 @@ nnoremap <silent> <Char-0x60> :set invrelativenumber<CR>:TagbarToggle<CR>:NERDTr
 call pathogen#infect()
 
 " ctrl-p stuff
+let g:ctrlp_user_command = ['.git/', 'cd %s && git ls-files --exclude-standard -co']
 let g:ctrlp_map = '<C-t>'
 let g:ctrlp_working_path_mode = 0 " always use CWD
 let g:ctrlp_dotfiles = 0
