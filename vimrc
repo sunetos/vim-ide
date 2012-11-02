@@ -4,10 +4,17 @@ source ~/.vim/01-preinit.vim
 " global settings
 syntax on
 filetype plugin indent on
+scriptencoding utf-8
 set cb="exclude:.*"
 set relativenumber
 set autoread
 set clipboard=unnamedplus " local clipboard integration
+set showmode                    " display the current mode
+set cursorline                  " highlight current line
+set shortmess+=filmnrxoOtT      " abbrev. of messages (avoids 'hit enter')
+set viewoptions=folds,options,cursor,unix,slash " better unix / windows compatibility
+set wildmenu                    " show list instead of just completing
+set wildmode=list:longest,full  " command <Tab> completion, list matches, then longest common part, then all.
 map :q :qa
 map :wq :wqa
 
@@ -62,6 +69,26 @@ map <C-n> :cn<CR>
 
 " Toggle the UI on backtick for ssh copy-pasting
 nnoremap <silent> <Char-0x60> :set invrelativenumber<CR>:TagbarToggle<CR>:NERDTreeMirrorToggle<CR>:wincmd p<CR>
+
+" Fancy status bar stolen from spf13
+  if has('cmdline_info')
+    set ruler                   " show the ruler
+    set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " a ruler on steroids
+    set showcmd                 " show partial commands in status line and selected characters/lines in visual mode
+  endif
+
+  if has('statusline')
+    set laststatus=2
+
+    " Broken down into easily includeable segments
+    set statusline=%<%f\    " Filename
+    set statusline+=%w%h%m%r " Options
+    set statusline+=%{fugitive#statusline()} "  Git Hotness
+    set statusline+=\ [%{&ff}/%Y]            " filetype
+    set statusline+=\ [%{getcwd()}]          " current dir
+    set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
+  endif
+
 
 " tab stuff
   :set hidden
@@ -220,8 +247,39 @@ endfunction
 autocmd BufWinEnter * nested TagbarOpen
 "autocmd VimEnter * nested call ShowTagbarAndFocus()
 
-" temporary hack to force focus on the file
-autocmd VimEnter * 2:wincmd w
+" OmniComplete {
+  if has("autocmd") && exists("+omnifunc")
+    autocmd Filetype *
+      \if &omnifunc == "" |
+      \setlocal omnifunc=syntaxcomplete#Complete |
+      \endif
+  endif
+
+  hi Pmenu  guifg=#000000 guibg=#F8F8F8 ctermfg=black ctermbg=Lightgray
+  hi PmenuSbar  guifg=#8A95A7 guibg=#F8F8F8 gui=NONE ctermfg=darkcyan ctermbg=lightgray cterm=NONE
+  hi PmenuThumb  guifg=#F8F8F8 guibg=#8A95A7 gui=NONE ctermfg=lightgray ctermbg=darkcyan cterm=NONE
+
+  " some convenient mappings
+  inoremap <expr> <Esc>      pumvisible() ? "\<C-e>" : "\<Esc>"
+  inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
+  inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
+  inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
+  inoremap <expr> <C-d>      pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<C-d>"
+  inoremap <expr> <C-u>      pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<C-u>"
+
+  " automatically open and close the popup menu / preview window
+  au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
+  set completeopt=menu,preview,longest
+" }
+
+" Vim powerline
+"let g:Powerline_symbols = 'fancy'
+
 
 " Finally load the user-customized postinit file
 source ~/.vim/09-postinit.vim
+
+" temporary hack to force focus on the file
+autocmd VimEnter * 2:wincmd w
+autocmd BufWinEnter * call Pl#UpdateStatusline(1)
+
