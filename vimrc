@@ -278,6 +278,7 @@ autocmd BufWinEnter * nested TagbarOpen
 
 " Vim powerline
 "let g:Powerline_symbols = 'fancy'
+let g:Powerline_colorscheme = 'solarized256'
 
 
 " Finally load the user-customized postinit file
@@ -285,5 +286,8 @@ source ~/.vim/09-postinit.vim
 
 " temporary hack to force focus on the file
 autocmd VimEnter * 2:wincmd w
-autocmd BufWinEnter * call Pl#UpdateStatusline(1)
+
+" For some reason powerline doesn't init correctly
+autocmd BufEnter,WinEnter,FileType,BufUnload * call Pl#UpdateStatusline(1)
+autocmd BufLeave,WinLeave * call Pl#UpdateStatusline(0)
 
