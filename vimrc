@@ -67,6 +67,9 @@ map <C-g> :cclose<CR>
 map <C-p> :cp<CR>
 map <C-n> :cn<CR>
 
+" Search & replace the text under the cursor
+:nnoremap <Leader>s :%s/\<<C-r><C-w>\>//g<Left><Left>
+
 " Toggle the UI on backtick for ssh copy-pasting
 nnoremap <silent> <Char-0x60> :set invrelativenumber<CR>:TagbarToggle<CR>:NERDTreeMirrorToggle<CR>:wincmd p<CR>
 
@@ -199,6 +202,7 @@ call pathogen#infect()
   inoremap <expr><C-e>  neocomplcache#cancel_popup()
 
 " ctrl-p stuff
+let g:ctrlp_user_command = ['.git/', 'cd %s && git ls-files --exclude-standard -co']
 let g:ctrlp_map = '<C-t>'
 let g:ctrlp_working_path_mode = 0 " always use CWD
 let g:ctrlp_dotfiles = 0
