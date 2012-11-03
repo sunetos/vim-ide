@@ -201,6 +201,13 @@ call pathogen#infect()
   inoremap <expr><C-y>  neocomplcache#close_popup()
   inoremap <expr><C-e>  neocomplcache#cancel_popup()
 
+  " Enable omni completion.
+  autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+  autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+  autocmd FileType javascript,typescript setlocal omnifunc=javascriptcomplete#CompleteJS
+  autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+  autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
 " ctrl-p stuff
 let g:ctrlp_user_command = ['.git/', 'cd %s && git ls-files --exclude-standard -co']
 let g:ctrlp_map = '<C-t>'
@@ -264,7 +271,7 @@ autocmd BufWinEnter * nested TagbarOpen
   hi PmenuThumb  guifg=#F8F8F8 guibg=#8A95A7 gui=NONE ctermfg=lightgray ctermbg=darkcyan cterm=NONE
 
   " some convenient mappings
-  inoremap <expr> <Esc>      pumvisible() ? "\<C-e>" : "\<Esc>"
+  inoremap <expr> <Esc>      pumvisible() ? "\<C-e>\<Esc>" : "\<Esc>"
   inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
   inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
   inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
@@ -284,10 +291,10 @@ let g:Powerline_colorscheme = 'solarized256'
 " Finally load the user-customized postinit file
 source ~/.vim/09-postinit.vim
 
-" temporary hack to force focus on the file
-autocmd VimEnter * 2:wincmd w
-
 " For some reason powerline doesn't init correctly
 autocmd BufEnter,WinEnter,FileType,BufUnload * call Pl#UpdateStatusline(1)
 autocmd BufLeave,WinLeave * call Pl#UpdateStatusline(0)
+
+" temporary hack to force focus on the file
+autocmd VimEnter * 2:wincmd w
 
