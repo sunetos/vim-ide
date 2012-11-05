@@ -8,7 +8,7 @@ scriptencoding utf-8
 set cb="exclude:.*"
 set relativenumber
 set autoread
-set clipboard=unnamedplus " local clipboard integration
+"set clipboard=unnamedplus " local clipboard integration
 set showmode                    " display the current mode
 set cursorline                  " highlight current line
 set shortmess+=filmnrxoOtT      " abbrev. of messages (avoids 'hit enter')
@@ -170,6 +170,9 @@ nnoremap <silent> <Char-0x60> :set invrelativenumber<CR>:TagbarToggle<CR>:NERDTr
     execute "nmap <Leader><Leader>" . buffer_no . " :normal " . buffer_no . "gt\<CR>"
   endfor
 
+" Temporarily disable syntastic
+"let g:loaded_syntastic_plugin = 1
+
 " load pathogen plugins
 call pathogen#infect()
 
@@ -271,7 +274,7 @@ autocmd BufWinEnter * nested TagbarOpen
   hi PmenuThumb  guifg=#F8F8F8 guibg=#8A95A7 gui=NONE ctermfg=lightgray ctermbg=darkcyan cterm=NONE
 
   " some convenient mappings
-  inoremap <expr> <Esc>      pumvisible() ? "\<C-e>\<Esc>" : "\<Esc>"
+  inoremap <expr> <Esc>      pumvisible() ? "\<C-e>" : "\<Esc>"
   inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
   inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
   inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
