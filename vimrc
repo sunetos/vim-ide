@@ -6,6 +6,7 @@ syntax on
 filetype plugin indent on
 scriptencoding utf-8
 set cb="exclude:.*"
+set backspace=indent,eol,start
 set relativenumber
 set autoread
 "set clipboard=unnamedplus " local clipboard integration
@@ -55,7 +56,8 @@ autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
 
 " mouse fixes
-set mouse=a
+" set mouse=a
+set mouse=nv " Just for normal and visual modes
 set ttymouse=xterm2
 behave xterm
 set selectmode=mouse
@@ -274,12 +276,13 @@ autocmd BufWinEnter * nested TagbarOpen
   hi PmenuThumb  guifg=#F8F8F8 guibg=#8A95A7 gui=NONE ctermfg=lightgray ctermbg=darkcyan cterm=NONE
 
   " some convenient mappings
-  inoremap <expr> <Esc>      pumvisible() ? "\<C-e>" : "\<Esc>"
+  inoremap <expr> <Esc>      pumvisible() ? "\<C-e>\<Esc>" : "\<Esc>"
   inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
-  inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
-  inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
-  inoremap <expr> <C-d>      pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<C-d>"
-  inoremap <expr> <C-u>      pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<C-u>"
+  inoremap <expr> <Down>     pumvisible() ? "\<C-j>" : "\<Down>"
+  inoremap <expr> <Up>       pumvisible() ? "\<C-k>" : "\<Up>"
+  "inoremap <expr> <C-d>      pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<C-d>"
+  "inoremap <expr> <C-u>      pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<C-u>"
+  "inoremap <C-Space> <C-X><C-O>
 
   " automatically open and close the popup menu / preview window
   au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
