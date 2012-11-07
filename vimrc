@@ -64,10 +64,11 @@ set selectmode=mouse
 "set selection=inclusive keymodel=startsel selectmode=key
 
 " build window hotkeys
-map <C-b> :w<CR>:make<CR>:cclose<CR>:copen<CR><C-W><C-P>
+map <C-b> :w<CR>:make %<CR>:cclose<R>:copen<CR><C-W><C-P>
 map <C-g> :cclose<CR>
-map <C-p> :cp<CR>
-map <C-n> :cn<CR>
+" These might conflict with omnicomplete
+"map <C-p> :cp<CR>
+"map <C-n> :cn<CR>
 
 " Search & replace the text under the cursor
 :nnoremap <Leader>s :%s/\<<C-r><C-w>\>//g<Left><Left>
