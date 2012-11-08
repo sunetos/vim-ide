@@ -19,6 +19,15 @@ set wildmode=list:longest,full  " command <Tab> completion, list matches, then l
 map :q :qa
 map :wq :wqa
 
+" backup to ~/.tmp
+set backup
+set backupdir=~/.vim/tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set backupskip=/tmp/*,/private/tmp/*
+set directory=~/.vim/tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set writebackup
+" set noswapfile
+" set nobackup
+
 " Control-n to switch back & forth between relative & absolute numbers
 function! NumberToggle()
   if(&relativenumber == 1)
