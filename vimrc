@@ -182,8 +182,8 @@ nnoremap <silent> <Char-0x60> :set invrelativenumber<CR>:TagbarToggle<CR>:NERDTr
     execute "nmap <Leader><Leader>" . buffer_no . " :normal " . buffer_no . "gt\<CR>"
   endfor
 
-" Temporarily disable syntastic
-"let g:loaded_syntastic_plugin = 1
+" Temporarily disable syntastic for typescript, it's just so slow.
+let g:loaded_typescript_syntax_checker = 1
 
 " load pathogen plugins
 call pathogen#infect()
