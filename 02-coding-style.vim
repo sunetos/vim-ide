@@ -17,3 +17,6 @@ endif
 " And override 80-column settings per-filetype
 autocmd FileType html setlocal colorcolumn=0 textwidth=0
 autocmd FileType sh setlocal colorcolumn=0 textwidth=0
+
+" Support markdown
+au BufRead,BufNewFile *.md set filetype=markdown
