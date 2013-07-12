@@ -24,7 +24,11 @@ au BufRead,BufNewFile *.md set filetype=markdown
 let g:tagbar_type_markdown = {
   \ 'ctagstype' : 'markdown',
   \ 'kinds' : [
-    \ 'h:Headings'
+    \ 'h:Headings',
+    \ 'a:Anchors',
+    \ 'l:Links',
+    \ 'b:Broken Links',
+    \ 'd:References'
   \ ],
 \ 'sort' : 0,
 \ }
