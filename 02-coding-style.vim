@@ -20,3 +20,11 @@ autocmd FileType sh setlocal colorcolumn=0 textwidth=0
 
 " Support markdown
 au BufRead,BufNewFile *.md set filetype=markdown
+
+let g:tagbar_type_markdown = {
+  \ 'ctagstype' : 'markdown',
+  \ 'kinds' : [
+    \ 'h:Headings'
+  \ ],
+\ 'sort' : 0,
+\ }
