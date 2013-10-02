@@ -72,7 +72,8 @@ behave xterm
 set selectmode=mouse
 "set selection=inclusive keymodel=startsel selectmode=key
 
-" build window hotkeys
+" build window hotkeys and setup
+map <C-l> :Lint<CR>
 map <C-b> :w<CR>:make %<CR>:cclose<R>:copen<CR><C-W><C-P>
 map <C-g> :cclose<CR>
 " These might conflict with omnicomplete
