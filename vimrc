@@ -186,6 +186,10 @@ nnoremap <silent> <Char-0x60> :set invrelativenumber<CR>:TagbarToggle<CR>:NERDTr
 " Temporarily disable syntastic for typescript, it's just so slow.
 let g:loaded_typescript_syntax_checker = 1
 
+" vim airline
+let g:airline_theme = 'solarized'
+let g:airline#extensions#hunks#non_zero_only = 1
+
 " load pathogen plugins
 call pathogen#infect()
 
@@ -300,18 +304,5 @@ autocmd BufWinEnter * nested TagbarOpen
   set completeopt=menu,preview,longest
 " }
 
-" Vim powerline
-"let g:Powerline_symbols = 'fancy'
-let g:Powerline_colorscheme = 'solarized256'
-
-
 " Finally load the user-customized postinit file
 source ~/.vim/09-postinit.vim
-
-" For some reason powerline doesn't init correctly
-autocmd BufEnter,WinEnter,FileType,BufUnload * call Pl#UpdateStatusline(1)
-autocmd BufLeave,WinLeave * call Pl#UpdateStatusline(0)
-
-" temporary hack to force focus on the file
-autocmd VimEnter * 2:wincmd w
-
