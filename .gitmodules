@@ -34,12 +34,18 @@
 [submodule "bundle/fugitive"]
 	path = bundle/fugitive
 	url = https://github.com/tpope/vim-fugitive.git
-[submodule "bundle/vim-powerline"]
-	path = bundle/vim-powerline
-	url = https://github.com/Lokaltog/vim-powerline.git
+[submodule "bundle/vim-airline"]
+	path = bundle/vim-airline
+	url = https://github.com/bling/vim-airline.git
 [submodule "bundle/typescript"]
 	path = bundle/typescript
 	url = https://github.com/leafgarland/typescript-vim.git
 [submodule "bundle/syntastic"]
 	path = bundle/syntastic
 	url = https://github.com/scrooloose/syntastic.git
+[submodule "bundle/vim-fugitive"]
+	path = bundle/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive.git
+[submodule "bundle/vim-signify"]
+	path = bundle/vim-signify
+	url = https://github.com/mhinz/vim-signify.git
