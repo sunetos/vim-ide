@@ -194,21 +194,27 @@ let g:airline#extensions#hunks#non_zero_only = 1
 call pathogen#infect()
 
 " neocomplcache stuff
-  let g:neocomplcache_enable_at_startup = 1
-  let g:neocomplcache_enable_smart_case = 1
-  let g:neocomplcache_enable_camel_case_completion = 1
-  let g:neocomplcache_enable_underbar_completion = 1
-  let g:neocomplcache_min_syntax_length = 3
-  let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+"   let g:neocomplcache_enable_at_startup = 1
+"   let g:neocomplcache_enable_smart_case = 1
+"   let g:neocomplcache_enable_camel_case_completion = 1
+"   let g:neocomplcache_enable_underbar_completion = 1
+"   let g:neocomplcache_min_syntax_length = 3
+"   let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 
   " Plugin key-mappings.
-  imap <C-k>     <Plug>(neocomplcache_snippets_expand)
-  smap <C-k>     <Plug>(neocomplcache_snippets_expand)
-  inoremap <expr><C-g>     neocomplcache#undo_completion()
-  inoremap <expr><C-l>     neocomplcache#complete_common_string()
+"   imap <C-k>     <Plug>(neocomplcache_snippets_expand)
+"   smap <C-k>     <Plug>(neocomplcache_snippets_expand)
+"   inoremap <expr><C-g>     neocomplcache#undo_completion()
+"   inoremap <expr><C-l>     neocomplcache#complete_common_string()
 
   " SuperTab like snippets behavior.
   "imap <expr><TAB> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : pumvisible() ? "\<C-n>" : "\<TAB>"
+  " Neocomplete stuff.
+  let g:neocomplete#enable_at_startup = 1
+
+  " Enable snipMate compatibility feature.
+  let g:neosnippet#enable_snipmate_compatibility = 1
+  let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
 
   " Recommended key-mappings.
   " <CR>: close popup and save indent.
