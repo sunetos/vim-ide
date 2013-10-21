@@ -1,3 +1,5 @@
+set nocompatible
+
 " First load the user-customized preinit file
 source ~/.vim/01-preinit.vim
 
@@ -210,7 +212,11 @@ call pathogen#infect()
   " SuperTab like snippets behavior.
   "imap <expr><TAB> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : pumvisible() ? "\<C-n>" : "\<TAB>"
   " Neocomplete stuff.
-  let g:neocomplete#enable_at_startup = 1
+  let g:acp_enableAtStartup = 0 " Disable AutoComplPop.
+  let g:neocomplete#enable_at_startup = 1 " Use neocomplete.
+  let g:neocomplete#enable_smart_case = 1 " Use smartcase.
+  let g:neocomplete#sources#syntax#min_keyword_length = 3 " Set minimum syntax keyword length.
+  let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 
   " Enable snipMate compatibility feature.
   let g:neosnippet#enable_snipmate_compatibility = 1
@@ -218,14 +224,21 @@ call pathogen#infect()
 
   " Recommended key-mappings.
   " <CR>: close popup and save indent.
-  inoremap <expr><CR>  neocomplcache#smart_close_popup() . "\<CR>"
+  inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+  function! s:my_cr_function()
+    return neocomplete#smart_close_popup() . "\<CR>"
+    " For no inserting <CR> key.
+    return pumvisible() ? neocomplete#close_popup() : "\<CR>"
+  endfunction
   " <TAB>: completion.
   inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
   " <C-h>, <BS>: close popup and delete backword char.
-  inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
-  inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-  inoremap <expr><C-y>  neocomplcache#close_popup()
-  inoremap <expr><C-e>  neocomplcache#cancel_popup()
+  inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+  inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+  inoremap <expr><C-y>  neocomplete#close_popup()
+  inoremap <expr><C-e>  neocomplete#cancel_popup()
+  " Close popup by <Space>.
+  inoremap <expr><Space> pumvisible() ? neocomplete#close_popup()."\<Space>" : "\<Space>"
 
   " Enable omni completion.
   autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
