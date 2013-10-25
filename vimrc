@@ -192,35 +192,19 @@ let g:loaded_typescript_syntax_checker = 1
 let g:airline_theme = 'solarized'
 let g:airline#extensions#hunks#non_zero_only = 1
 
+" Neocomplete stuff.
+let g:acp_enableAtStartup = 0 " Disable AutoComplPop.
+let g:neocomplete#enable_at_startup = 1 " Use neocomplete.
+let g:neocomplete#enable_smart_case = 1 " Use smartcase.
+let g:neocomplete#sources#syntax#min_keyword_length = 2 " Set minimum syntax keyword length.
+let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+
+" Enable snipMate compatibility feature.
+" let g:neosnippet#enable_snipmate_compatibility = 1
+" let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
+
 " load pathogen plugins
 call pathogen#infect()
-
-" neocomplcache stuff
-"   let g:neocomplcache_enable_at_startup = 1
-"   let g:neocomplcache_enable_smart_case = 1
-"   let g:neocomplcache_enable_camel_case_completion = 1
-"   let g:neocomplcache_enable_underbar_completion = 1
-"   let g:neocomplcache_min_syntax_length = 3
-"   let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
-
-  " Plugin key-mappings.
-"   imap <C-k>     <Plug>(neocomplcache_snippets_expand)
-"   smap <C-k>     <Plug>(neocomplcache_snippets_expand)
-"   inoremap <expr><C-g>     neocomplcache#undo_completion()
-"   inoremap <expr><C-l>     neocomplcache#complete_common_string()
-
-  " SuperTab like snippets behavior.
-  "imap <expr><TAB> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : pumvisible() ? "\<C-n>" : "\<TAB>"
-  " Neocomplete stuff.
-  let g:acp_enableAtStartup = 0 " Disable AutoComplPop.
-  let g:neocomplete#enable_at_startup = 1 " Use neocomplete.
-  let g:neocomplete#enable_smart_case = 1 " Use smartcase.
-  let g:neocomplete#sources#syntax#min_keyword_length = 3 " Set minimum syntax keyword length.
-  let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-
-  " Enable snipMate compatibility feature.
-  let g:neosnippet#enable_snipmate_compatibility = 1
-  let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
 
   " Recommended key-mappings.
   " <CR>: close popup and save indent.
