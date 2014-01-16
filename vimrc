@@ -194,10 +194,13 @@ let g:airline#extensions#hunks#non_zero_only = 1
 
 " Neocomplete stuff.
 let g:acp_enableAtStartup = 0 " Disable AutoComplPop.
+let g:neocomplete#auto_completion_start_length = 1
 let g:neocomplete#enable_at_startup = 1 " Use neocomplete.
 let g:neocomplete#enable_smart_case = 1 " Use smartcase.
 let g:neocomplete#sources#syntax#min_keyword_length = 2 " Set minimum syntax keyword length.
 let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+let g:neocomplete#enable_auto_select = 0
+let g:neocomplete#disable_auto_complete = 1
 
 " Enable snipMate compatibility feature.
 " let g:neosnippet#enable_snipmate_compatibility = 1
@@ -304,7 +307,7 @@ autocmd BufWinEnter * nested TagbarOpen
 
   " automatically open and close the popup menu / preview window
   au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
-  set completeopt=menu,preview,longest
+  set completeopt=menuone,preview,longest
 " }
 
 " Finally load the user-customized postinit file
