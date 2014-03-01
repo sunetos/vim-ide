@@ -58,3 +58,6 @@
 [submodule "bundle/vim-snippets"]
 	path = bundle/vim-snippets
 	url = https://github.com/honza/vim-snippets
+[submodule "bundle/julia-vim"]
+	path = bundle/julia-vim
+	url = git://github.com/JuliaLang/julia-vim.git
