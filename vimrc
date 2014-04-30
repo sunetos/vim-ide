@@ -47,9 +47,6 @@ nnoremap <C-n> :call NumberToggle()<cr>
 autocmd InsertEnter * :set number
 autocmd InsertLeave * :set relativenumber
 
-" Load customized coding styles
-source ~/.vim/02-coding-style.vim
-
 " Load customized color scheme
 source ~/.vim/03-colors.vim
 
@@ -309,6 +306,9 @@ autocmd BufWinEnter * nested TagbarOpen
   au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
   set completeopt=menuone,preview,longest
 " }
+
+" Load customized coding styles
+source ~/.vim/02-coding-style.vim
 
 " Finally load the user-customized postinit file
 source ~/.vim/09-postinit.vim
