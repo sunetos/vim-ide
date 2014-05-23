@@ -18,6 +18,8 @@ endif
 autocmd FileType html setlocal colorcolumn=0 textwidth=0
 autocmd FileType sh setlocal colorcolumn=0 textwidth=0
 
+autocmd FileType julia setlocal shiftwidth=4 tabstop=4
+
 " Support markdown
 au BufRead,BufNewFile *.md set filetype=markdown
 
