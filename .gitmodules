@@ -61,3 +61,6 @@
 [submodule "bundle/julia-vim"]
 	path = bundle/julia-vim
 	url = git://github.com/JuliaLang/julia-vim.git
+[submodule "bundle/nerdcommenter"]
+	path = bundle/nerdcommenter
+	url = https://github.com/scrooloose/nerdcommenter.git
