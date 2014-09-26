@@ -203,6 +203,11 @@ let g:neocomplete#disable_auto_complete = 1
 " let g:neosnippet#enable_snipmate_compatibility = 1
 " let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
 
+" Julia configuration
+let g:julia_latex_to_unicode = 0  " Requires VIM 7.4
+let g:julia_auto_latex_to_unicode = 0
+" Actually the current Julia is broken. Added a temp code hack to fix.
+
 " load pathogen plugins
 call pathogen#infect()
 
