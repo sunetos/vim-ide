@@ -206,7 +206,42 @@ let g:neocomplete#disable_auto_complete = 1
 " Julia configuration
 let g:julia_latex_to_unicode = 0  " Requires VIM 7.4
 let g:julia_auto_latex_to_unicode = 0
-" Actually the current Julia is broken. Added a temp code hack to fix.
+" Actually the current vim-julia is broken. Added a temp code hack to fix.
+
+
+" Session configuration. Auto create/load sessions when opening a directory.
+let g:session_autosave = 'no'
+let g:session_autoload = 'no'
+if argc() == 0 || (argc() == 1 && isdirectory(argv(0)))
+  function SaveGlobals()
+    let s:globals = []
+    for gk in keys(g:)
+      let s:gkt = type(g:[gk])
+      if !islocked('g:' . gk) && s:gkt != 2 && s:gkt != 4
+        call add(s:globals, 'g:' . gk)
+      endif
+    endfor
+    let g:session_persist_globals = s:globals
+  endfunction
+
+  call SaveGlobals()
+  "autocmd VimEnter * nested call SaveGlobals()
+
+  let s:session_dir = getcwd()
+  if argc() == 1
+    let s:session_dir = argv(0)
+  endif
+
+  " Remove trailing slash if found.
+  let s:session_dir = substitute(s:session_dir, '\(\\\|\/\)$', '', '')
+
+  let g:session_autosave = 'yes'
+  "let g:session_autoload = 'yes'
+  let g:session_autosave_periodic = 1
+  let g:session_directory = s:session_dir . '/.vimsession'
+  autocmd VimEnter * nested :OpenSession
+endif
+
 
 " load pathogen plugins
 call pathogen#infect()
@@ -280,11 +315,7 @@ let g:tagbar_left = 0
 let g:tagbar_width = 36
 let g:tagbar_compact = 1
 let g:tagbar_sort = 0
-function ShowTagbarAndFocus()
-  call tagbar#OpenWindow('c')
-endfunction
-autocmd BufWinEnter * nested TagbarOpen
-"autocmd VimEnter * nested call ShowTagbarAndFocus()
+autocmd BufWinEnter * nested if xolox#session#find_current_session() == '' | TagbarOpen | endif
 
 " OmniComplete {
   if has("autocmd") && exists("+omnifunc")
